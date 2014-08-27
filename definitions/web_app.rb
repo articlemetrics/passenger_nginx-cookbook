@@ -4,7 +4,12 @@ define :web_app, :template => 'web_app.conf.erb', :local => false, :enable => tr
 
   include_recipe "passenger_nginx"
 
-  template "#{node['nginx']['dir']}/conf.d/#{application_name}.conf" do
+  # delete default configuration file
+  file "#{node['nginx']['dir']}/sites-enabled/default" do
+    action :delete
+  end
+
+  template "#{node['nginx']['dir']}/sites-enabled/#{application_name}.conf" do
     source params[:template]
     local params[:local]
     owner 'root'
