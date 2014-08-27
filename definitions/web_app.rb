@@ -2,7 +2,13 @@ define :web_app, :template => 'web_app.conf.erb', :local => false, :enable => tr
 
   application_name = params[:name]
 
-  # include_recipe 'passenger_nginx'
+  # create nginx directory if it doesn't exist, e.g. because nginx hasn't been installed yet
+  directory node['nginx']['dir'] do
+    owner 'root'
+    group 'root'
+    mode '0644'
+    recursive true
+  end
 
   template "#{node['nginx']['dir']}/conf.d/#{application_name}.conf" do
     source params[:template]
