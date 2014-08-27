@@ -14,5 +14,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[nginx::default]
+      - recipe[passenger_nginx::default]
     attributes:

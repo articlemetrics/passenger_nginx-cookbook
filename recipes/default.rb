@@ -1,3 +1,5 @@
+include_recipe 'ruby'
+
 case node['platform_version'].to_f
 when 12.04 then distro = 'precise'
 when 14.04 then distro = 'trusty'
@@ -24,17 +26,6 @@ end
 template 'nginx.conf' do
   path   "#{node['nginx']['dir']}/nginx.conf"
   source 'nginx.conf.erb'
-  owner  'root'
-  group  'root'
-  mode   '0644'
-  notifies :reload, 'service[nginx]'
-end
-
-# web app configuration
-# as we manage this via Chef, we use the conf.d folder rather than the sites-available folder
-template 'app.conf' do
-  path   "#{node['nginx']['dir']}/conf.d/#{node['nginx']['app']}.conf"
-  source 'app.conf.erb'
   owner  'root'
   group  'root'
   mode   '0644'

@@ -1,0 +1,8 @@
+server {
+  listen 80;
+  server_name <%= @params[:server_name] %>;
+  root <%= @params[:docroot] %>;
+  access_log <%= node['nginx']['log_dir'] %>/<%= @application_name %>.access.log;
+  passenger_enabled on;
+  passenger_app_env <%= @params[:rails_env] %>;
+}
