@@ -1,6 +1,6 @@
 passenger_nginx Cookbook
 ==========================
-Installs passenger with Nginx.
+Installs passenger with Nginx, using the Phusion PPA.
 
 
 Requirements
@@ -20,7 +20,7 @@ Opscode cookbooks:
 
 Other cookbooks:
 
-- ruby
+- [ruby](https://github.com/articlemetrics/ruby-cookbook)
 
 
 Attributes
@@ -43,12 +43,11 @@ Usage
 For example, to run a Rails application on passenger:
 
 ```ruby
-include_recipe "rails"
 include_recipe "passenger_nginx"
 
 web_app "myproj" do
   docroot "/var/www/myproj/current/public"
-  server_name "myproj.#{node[:domain]}"
+  server_name node['hostname']
   rails_env "production"
 end
 ```
