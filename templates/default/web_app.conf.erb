@@ -1,5 +1,5 @@
 server {
-  listen 80;
+  listen 80 default_server;
   server_name <%= @params[:server_name] %>;
   root <%= @params[:docroot] %>;
   access_log <%= node['nginx']['log_dir'] %>/<%= @application_name %>.access.log;
