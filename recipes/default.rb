@@ -15,7 +15,7 @@ apt_repository 'phusion-passenger' do
 end
 
 # install nginx with passenger
-%w{ nginx-extras passenger }.each do |pkg|
+%w{ nginx-full passenger }.each do |pkg|
   package pkg do
     options "-y"
     action :install
