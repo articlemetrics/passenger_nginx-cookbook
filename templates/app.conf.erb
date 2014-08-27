@@ -1,0 +1,7 @@
+server {
+  listen 80;
+  server_name <%= node['hostname'] %>;
+  root /var/www/<%= node['nginx']['app'] %>/current/public;
+  access_log <%= node['nginx']['log_dir'] %>/<%= node['nginx']['app'] %>.access.log;
+  passenger_enabled on;
+}
