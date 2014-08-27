@@ -2,7 +2,7 @@ define :web_app, :template => 'web_app.conf.erb', :local => false, :enable => tr
 
   application_name = params[:name]
 
-  include_recipe 'passenger_nginx::default'
+  include_recipe 'passenger_nginx'
 
   template "#{node['nginx']['dir']}/conf.d/#{application_name}.conf" do
     source params[:template]
