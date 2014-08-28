@@ -7,18 +7,19 @@ SITE
 GIT
   remote: git@github.com:articlemetrics/ruby-cookbook.git
   ref: master
-  sha: 7d8d707dd448e351776b0b1a4d6ffba40acb9bc4
+  sha: 117a7dbd0403b190d3a847849b566de57baa7897
   specs:
-    ruby (0.1.1)
+    ruby (0.1.4)
       apt (~> 2.5.3)
       build-essential (= 2.0.0)
 
 PATH
   remote: ../passenger_nginx-cookbook
   specs:
-    passenger_nginx (0.1.0)
+    passenger_nginx (0.1.11)
       apt (~> 2.5.3)
       build-essential (= 2.0.0)
+      ruby (~> 0.1.0)
 
 DEPENDENCIES
   passenger_nginx (>= 0)
