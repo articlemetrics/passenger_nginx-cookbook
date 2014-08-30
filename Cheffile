@@ -1,9 +1,0 @@
-##!/usr/bin/env ruby
-#^syntax detection
-
-site 'https://supermarket.getchef.com/api/v1'
-
-cookbook "passenger_nginx",
-  :path => "../passenger_nginx-cookbook"
-cookbook "ruby",
-  :git => "git@github.com:articlemetrics/ruby-cookbook.git"
