@@ -1,17 +1,14 @@
 include_recipe 'ruby'
 
-case node['platform_version'].to_f
-when 12.04 then distro = 'precise'
-when 14.04 then distro = 'trusty'
-end
-
-# add PPA for nginx with passenger
-apt_repository 'phusion-passenger' do
-  uri          'https://oss-binaries.phusionpassenger.com/apt/passenger'
-  distribution distro
-  components   ['main']
-  keyserver    'keyserver.ubuntu.com'
-  key          '561F9B9CAC40B2F7'
+# add Phusion PPA for Nginx compiled with Passenger
+apt_repository "phusion-passenger-#{node['lsb']['codename']}" do
+  uri          "https://oss-binaries.phusionpassenger.com/apt/passenger"
+  distribution node['lsb']['codename']
+  components   ["main"]
+  keyserver    "keyserver.ubuntu.com"
+  key          "561F9B9CAC40B2F7"
+  action       :add
+  notifies     :run, "execute[apt-get update]", :immediately
 end
 
 # install nginx with passenger
@@ -34,5 +31,5 @@ end
 
 service 'nginx' do
   supports :status => true, :restart => true, :reload => true
-  action   :restart
+  action   :nothing
 end

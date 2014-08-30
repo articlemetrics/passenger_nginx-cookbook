@@ -30,12 +30,32 @@ Attributes
 * `node['nginx']['log_dir']` - Defaults to `/var/log/nginx`.
 * `node['nginx']['worker_processes']` - Defaults to `4`.
 * `node['nginx']['worker_connections']` - Defaults to `768`.
+* `node['nginx']['default_site_enabled']` - Defaults to `true`.
+* `node['rails']['application']` - Defaults to `app`.
+* `node['rails']['rails_env']` - Defaults to `production`.
+* `node['rails']['group']` - Defaults to `www-data`.
 
 
 Recipes
 -------
 ### default
-Installs passenger from the [Phusion PPA](http://blog.phusion.nl/2013/09/11/debian-and-ubuntu-packages-for-phusion-passenger/).
+Installs passenger from the [Phusion PPA](http://blog.phusion.nl/2013/09/11/debian-and-ubuntu-packages-for-phusion-passenger/). Usually not used directly, because the recipe is included in the `passenger_nginx` resource.
+
+
+Resources/Providers
+-------
+
+### passenger_nginx
+
+The `passenger_nginx` LWRP configures Nginx with Passenger.
+
+# Attribute Parameters
+
+* `name` - Name of the application. Used to construct the document root at `/var/www/NAME/current/public`
+* `rails_env` - Rails enviroment used by Passenger. Defaults to `production`.
+* `owner` - Owner for application folder. Defaults to `www-data`.
+* `group` - Group for application folder. Defaults to `www-data`.
+* `default_server` - Whether the application is the default server when multiple virtual hosts are present. Defaults to `true`.
 
 
 Usage
@@ -43,11 +63,7 @@ Usage
 For example, to run a Rails application on passenger:
 
 ```ruby
-include_recipe "passenger_nginx"
-
-web_app "myproj" do
-  docroot "/var/www/myproj/current/public"
-  server_name node['hostname']
+passenger_nginx "myproj" do
   rails_env "production"
 end
 ```
