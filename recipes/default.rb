@@ -1,3 +1,4 @@
+include_recipe 'apt'
 include_recipe 'ruby'
 
 # add Phusion PPA for Nginx compiled with Passenger
