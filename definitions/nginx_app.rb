@@ -4,8 +4,9 @@ define :web_app, :template => 'web_app.conf.erb', :local => false, :enable => tr
 
   include_recipe "passenger_nginx"
 
-  # delete default configuration file
+  # optionally delete default configuration file
   file "#{node['nginx']['dir']}/sites-enabled/default" do
+    not_if { node['nginx']['default_site_enabled'] }
     action :delete
   end
 
