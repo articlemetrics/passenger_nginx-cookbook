@@ -25,15 +25,9 @@ action :config do
     notifies :reload, 'service[nginx]'
   end
 
-  # create root folder and set permissions
-  directory "/var/www/#{new_resource.name}" do
-    owner new_resource.owner
-    group new_resource.group
-    mode '0755'
-    recursive true
-  end
-
-  directory "/var/www/#{new_resource.name}/current/public" do
+  # create application root folder and set permissions
+  %w{ #{new_resource.name} #{new_resource.name}/current #{new_resource.name}/current/public }.each do |dir|
+  directory "/var/www/#{dir}" do
     owner new_resource.owner
     group new_resource.group
     mode '0755'
