@@ -1,17 +1,15 @@
-use_inline_resources
-
-include Chef::DSL::IncludeRecipe
-
 def whyrun_supported?
   true
 end
+
+use_inline_resources
 
 def load_current_resource
   @current_resource = Chef::Resource::PassengerNginx.new(new_resource.name)
 end
 
 action :config do
-  include_recipe "passenger_nginx"
+  run_context.include_recipe "passenger_nginx"
 
   service 'nginx' do
     supports :status => true, :restart => true, :reload => true
