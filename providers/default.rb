@@ -18,7 +18,7 @@ action :config do
 
   # optionally delete default configuration file
   file "#{node['nginx']['dir']}/sites-enabled/default" do
-    only_if { node['nginx']['default_site_enabled'] }
+    not_if { node['nginx']['default_site_enabled'] }
     action :delete
     notifies :reload, 'service[nginx]'
   end
