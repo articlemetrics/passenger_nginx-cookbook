@@ -6,7 +6,7 @@ description       "Configure nginx with passenger"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version           "0.2.12"
 depends           "apt", "~> 2.5.3"
-depends           "ruby", "~> 0.2.0"
+depends           "ruby", "~> 0.3.0"
 
 %w{ ubuntu }.each do |platform|
   supports platform
