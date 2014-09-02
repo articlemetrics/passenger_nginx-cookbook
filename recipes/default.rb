@@ -1,6 +1,10 @@
 include_recipe 'apt'
 include_recipe 'ruby'
 
+execute "apt-get update" do
+  action :nothing
+end
+
 # add Phusion PPA for Nginx compiled with Passenger
 apt_repository "phusion-passenger-#{node['lsb']['codename']}" do
   uri          "https://oss-binaries.phusionpassenger.com/apt/passenger"
