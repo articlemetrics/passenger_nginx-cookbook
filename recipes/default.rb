@@ -1,5 +1,4 @@
 include_recipe 'apt'
-include_recipe 'ruby'
 
 execute "apt-get update" do
   action :nothing
