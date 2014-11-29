@@ -5,4 +5,14 @@ server {
   access_log <%= node['nginx']['log_dir'] %>/<%= @application %>.access.log;
   passenger_enabled on;
   passenger_app_env <%= @rails_env %>;
+
+  <% if node['ruby']['api_only'] %>
+    location / {
+      try_files $uri;
+    }
+
+    location /api {
+      passenger_enabled on;
+    }
+  <% end %>
 }
