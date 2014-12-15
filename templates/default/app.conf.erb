@@ -5,6 +5,9 @@ server {
   access_log <%= node['nginx']['log_dir'] %>/<%= @application %>.access.log;
   passenger_enabled on;
   passenger_app_env <%= @rails_env %>;
+  <% if node['ruby']['merge_slashes_off'] %>
+    merge_slashes off;
+  <% end %>
 
   <% if node['ruby']['api_only'] %>
     location / {
