@@ -4,7 +4,7 @@ maintainer_email  "mfenner@plos.org"
 license           "Apache 2.0"
 description       "Configure nginx with passenger"
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           "0.5.0"
+version           "0.5.1"
 depends           "apt"
 depends           "ruby", "~> 0.6.0"
 

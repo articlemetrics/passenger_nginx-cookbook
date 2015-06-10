@@ -18,7 +18,7 @@ end
 # install nginx with passenger
 %w{ nginx-full passenger }.each do |pkg|
   package pkg do
-    options "-y"
+    options "-y --force-yes"
     action :install
   end
 end
