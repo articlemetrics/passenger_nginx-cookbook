@@ -3,7 +3,7 @@ source "https://supermarket.getchef.com"
 metadata
 
 cookbook "ruby",
-         :git => "git@github.com:articlemetrics/ruby-cookbook.git"
+         :git => "git@github.com:lagotto/ruby-cookbook.git"
 cookbook "capistrano",
          :git => "git@github.com:lagotto/capistrano-cookbook.git"
 cookbook "dotenv",
