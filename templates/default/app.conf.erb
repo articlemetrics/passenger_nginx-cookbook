@@ -2,7 +2,11 @@ server {
   server_name <%= "#{@application}.#{node['domain']}" %>;
 
   listen 80 <%= @default_server ? "default_server" : "" %>;
-  root <%= "/var/www/#{@application}/public" %>;
+  <% if node['ruby']['enable_capistrano'] %>
+    root <%= "/var/www/#{@application}/current/public" %>;
+  <% else %>
+    root <%= "/var/www/#{@application}/public" %>;
+  <% end %>
   passenger_enabled on;
   passenger_app_env <%= @rails_env %>;
   <% if node['ruby']['merge_slashes_off'] %>
