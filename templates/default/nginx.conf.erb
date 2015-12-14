@@ -30,9 +30,13 @@ http {
   ##
   # Logging Settings
   ##
-
+  <% if node['nginx']['server'] %>
+  error_log syslog:server=<%= node['fqdn'] %>;
+  access_log syslog:server=<%= node['fqdn'] %>,severity=info;
+  <% else %>
   error_log syslog:server=<%= node['rsyslog']['server_ip'] %>:<%= node['rsyslog']['port'] %>;
   access_log syslog:server=<%= node['rsyslog']['server_ip'] %>:<%= node['rsyslog']['port'] %>,severity=info;
+  <% end %>
 
   ##
   # Gzip Settings
