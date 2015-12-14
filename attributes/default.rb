@@ -13,7 +13,7 @@ default['ruby']['merge_slashes_off'] = true
 default['ruby']['api_only'] = false
 default['ruby']['packages'] = %w{ curl git libmysqlclient-dev python-software-properties software-properties-common zlib1g-dev }
 default['ruby']['packages'] += %w{ avahi-daemon libnss-mdns } if node['ruby']['rails_env'] != "production"
-default['rsyslog']['server'] = '127.0.0.1'
+default['rsyslog']['server_ip'] = '127.0.0.1'
 default['rsyslog']['port'] = 514
 
 default['nodejs']['repo'] = 'https://deb.nodesource.com/node_0.12'
