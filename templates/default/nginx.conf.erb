@@ -30,8 +30,11 @@ http {
   ##
   # Logging Settings
   ##
+  log_format proxy_format '$http_x_real_ip - $remote_user [$time_local]'
+                          '"$request" $status $body_bytes_sent '
+                          '"$http_referer" "$http_user_agent"';
   error_log syslog:server=<%= @rsyslog_server %>;
-  access_log syslog:server=<%= @rsyslog_server %>,severity=info;
+  access_log syslog:server=<%= @rsyslog_server %>,severity=info proxy_format;
 
   ##
   # Gzip Settings
